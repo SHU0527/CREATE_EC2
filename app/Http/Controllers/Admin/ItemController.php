@@ -35,14 +35,14 @@ class ItemController extends Controller
 		if ($item) {
 			return view('admin/item.edit', compact('item'));
 		} else {
-			return redirect('admin/items')->with('error', '商品が存在しませ				ん');
+			return redirect('admin/items')->with('error', '商品が存在しません');
 		}
 	}
 
     public function update(ItemRequest $request, $id)
 	{
-		(new Item)->editItem($request);
-		return redirect(route('items.show', $id))->with('flash_message', '商		品情報が変更されました');
+		(new Item)->editItem($request, $id);
+		return redirect(route('items.show', $id))->with('flash_message', '商品情報が変更されました');
 	}
 
     public function destroy($id)

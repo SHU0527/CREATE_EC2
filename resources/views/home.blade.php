@@ -25,8 +25,10 @@ if (strpos($now_route, 'admin') === false) {
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
-                    @endif
-
+					@endif
+					@if (!empty(Auth::guard('user')->user()) && strpos($now_route, 'admin') === false)
+						<a href="{{ route('user.index') }}">購入商品情報ページへ</a>
+					@endif
                     You are logged in!
 				</div>
         </div>

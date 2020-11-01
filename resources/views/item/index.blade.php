@@ -8,6 +8,10 @@
 @extends('layouts.app')
 @section('content')
 <h1>商品一覧</h1>
+@if (Auth::check())
+	<a href="{{ route('carts.index') }}">カートの中身を確認する</a>
+@endif
+
  <table border="2" cellpadding="6" cellspacing="5">
 <tr>
 <th>商品名</th>

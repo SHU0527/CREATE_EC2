@@ -12,7 +12,7 @@ class ItemController extends Controller
 		return view('item.index', compact('items'));
 	}
 	public function detail($id) {
-		$details = Item::find($id);
-		return view('item.detail', compact('details'));
+		$detail = Item::find($id);
+		return view('item.detail', compact('detail'));
 	}
 }

@@ -16,11 +16,11 @@ Route::get('/', function () {
 	 return redirect('home');
 });
 
-Route::get('/items', 'ItemController@index');
+Route::get('/items', 'ItemController@index')->name('user.index');
 Route::get('/items/{id}', 'ItemController@detail')->name('detail');
 // User ログイン後
 Route::group(['middleware' => 'auth:user'], function() {
-Route::get('home', 'HomeController@index')->name('home');
+Route::get('user/home', 'HomeController@index')->name('home');
 Route::resource('carts', 'CartController');
 });
 // Admin 認証不要

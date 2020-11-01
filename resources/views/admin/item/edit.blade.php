@@ -9,7 +9,6 @@
 @endif
 
 {{ Form::model($item, ['route' => ['items.update', $item->id], 'method' => 'put']) }}
-<p>id<br />{{ Form::text('id', $item->id) }}</p>
 <p>商品名<br />{{ Form::text('name', $item->name) }}</p>
 <p>商品説明<br />{{ Form::text('description', $item->description) }}</p>
 <p>在庫数<br />{{ Form::number('stocks', $item->stocks) }}</p>

@@ -20,7 +20,7 @@
 	<input type="hidden" name="cart_id" value="{{ $cart->id }}">
 	<button type="submit">削除</button>
 	</form></td></tr>
-endforeach
+@endforeach
 <td style="background-color:#f5f5f5">
 <td>合計</td>
 <td>{{ $subtotals }}</td>
@@ -32,6 +32,6 @@ endforeach
 	<h1>カートに商品はありません</h1>
 @endif
 <br>
-<h2><a href="{{ route('item.index') }}">商品一覧へ戻る</a></h2>
+<h2><a href="{{ route('user.index') }}">商品一覧へ戻る</a></h2>
 </body>
 @endsection
