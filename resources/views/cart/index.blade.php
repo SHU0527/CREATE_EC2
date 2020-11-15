@@ -1,8 +1,11 @@
 @extends('layouts.app')
 @section('content')
+<div class="container">
+<div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
 <body>
 @if (0 < $carts->count())
-	<table>
+	</div>
+	<table class="table table-striped table-hover table-centered">
 	<h1>カート内容</h1>
 	<tr style="background-color:#e3f0fb">
 	<th>商品名</th>
@@ -11,25 +14,24 @@
 	<th>削除</th>
 	</tr>
 @foreach ($carts as $cart)
-	<tr style="background-color:#f5f5f5">
-	<td align="right">{{ $cart->item->name }}</td>
-	<td align="right">{{ $cart->quantity }}</td>
-	<td align="right">{{ $cart->subtotal() }}</td>
-	<td><form method="post" action="{{ route('cart.delete') }}">
-	{{ csrf_field() }}
-	<input type="hidden" name="cart_id" value="{{ $cart->id }}">
-	<button type="submit">削除</button>
-	</form></td></tr>
-@endforeach
-<td style="background-color:#f5f5f5">
-<td>合計</td>
-<td>{{ $subtotals }}</td>
-<td>税込: {{ $totals }}</td>
-<td></td>
+<tr style="background-color:#f5f5f5">
+<td>{{ $cart->item->name }}</td>
+<td>{{ $cart->quantity }}</td>
+<td>{{ $cart->item->price }}</td>
+<td>
+<form method="POST" action="{{ route('carts.destroy', ['id' => $cart->id]) }}">
+{{ csrf_field() }}
+{{ method_field('DELETE') }}
+<button type="submit">削除</button>
+</form>
 </td>
+</tr>
+@endforeach
 </table>
 @else
-	<h1>カートに商品はありません</h1>
+<div style="padding:100px">
+<h1 style="color:lightgray;text-align:center;">カートが空です</h1>
+</div>
 @endif
 <br>
 <h2><a href="{{ route('user.index') }}">商品一覧へ戻る</a></h2>

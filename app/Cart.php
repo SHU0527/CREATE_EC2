@@ -4,6 +4,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\facades\Auth;
+use App\Item;
 
 class Cart extends Model
 {
@@ -20,26 +21,25 @@ class Cart extends Model
 		$carts = $this->where('user_id', $auth_id)->get();
 		return $carts;
 	}
-	public function add_db($item_id, $add_qty) {
+	public function add_db($item_id) {
 		$item = (new item)->findOrFail($item_id);
-		$qty = $item->quantity;
+		$qty = $item->stocks;
 		//在庫なしバリデーション
 		if ($qty <= 0) {
 			return false;
 		}
-		$cart = $this->firstOrCreate(['user_id' => Auth::id(), 'item_id' => $item_id], ['quantity' => 0]);
-		$cart->increment('quantity', $add_qty);
-		$item->decrement('quantity', $add_qty);
+		$cart = $this->firstOrCreate(['user_id' => Auth::id(), 'item_id' => $item_id], ['quantity' => 1]);
+		$cart->increment('quantity', 1);
+		$item->decrement('stocks', 1);
 		return true;
 	}
 	public function soft_delete_db($cart_id) {
-		$cart = $this->findOrCreate($cart_id);
+		$cart = $this->firstOrCreate($cart_id);
 		if ($cart->user_id == Auth::id()) {
 			$item_id = $cart->item_id;
-			$qty = $cart->quantity;
 			$cart->delete();
 			$item = (new Item)->find($item_id);
-			$item->increment('quantity', $qty);
+			$item->increment('stocks', 1);
 			return true;
 		}
 		return false;

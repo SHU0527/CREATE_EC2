@@ -33,9 +33,11 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+	{
+		$item_id = $request->input('item_id');
+		$this->cart->add_db($item_id, 1);
+		return redirect('/cart/index');
+	}
 
     /**
      * Display the specified resource.
@@ -77,8 +79,9 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request, $cart_id)
+	{
+		$this->cart->soft_delete_db($cart_id);
+		return redirect('/cart/index');
     }
 }
