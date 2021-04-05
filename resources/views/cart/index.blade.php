@@ -28,6 +28,7 @@
 </tr>
 @endforeach
 </table>
+<h4 class="text-center">合計金額：{{ $subtotals }}円</h4>
 @else
 <div style="padding:100px">
 <h1 style="color:lightgray;text-align:center;">カートが空です</h1>

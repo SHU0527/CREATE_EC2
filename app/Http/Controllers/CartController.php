@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
 use App\Cart;
+use DB;
+use App\Item;
+
 
 class CartController extends Controller
 {
@@ -13,7 +16,9 @@ class CartController extends Controller
 	}
 	public function index() {
 		$carts = $this->cart->all_get(Auth::id());
-		return view('cart.index', compact('carts'));
+        $subtotals = $this->subtotals($carts);
+
+		return view('cart.index', compact('carts', 'subtotals'));
 	}
 
     /**
@@ -36,7 +41,8 @@ class CartController extends Controller
 	{
 		$item_id = $request->input('item_id');
 		$this->cart->add_db($item_id, 1);
-		return redirect('/cart/index');
+		return redirect('carts');
+        
 	}
 
     /**
@@ -81,7 +87,25 @@ class CartController extends Controller
      */
     public function destroy(Request $request, $cart_id)
 	{
-		$this->cart->soft_delete_db($cart_id);
-		return redirect('/cart/index');
+		DB::transaction(function () use ($cart_id, $request) {
+			$cart = Cart::find($cart_id);
+			if ($cart->user_id == Auth::id()) {
+				$item_id = $cart->item_id;
+				$stock_return = $cart->quantity;
+				$cart->delete();
+				$item = (new Item)->find($item_id);
+				$item->increment('stocks', $stock_return);
+			}
+		});
+		return redirect('carts');
+	}
+
+    private function subtotals($carts) {
+        $result = 0;
+        foreach ($carts as $cart) {
+            $result += $cart->subtotal();
+        }
+        return $result;
     }
+    
 }

@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\facades\Auth;
 use App\Item;
+use DB;
 
 class Cart extends Model
 {
@@ -33,17 +34,19 @@ class Cart extends Model
 		$item->decrement('stocks', 1);
 		return true;
 	}
-	public function soft_delete_db($cart_id) {
-		$cart = $this->firstOrCreate($cart_id);
-		if ($cart->user_id == Auth::id()) {
-			$item_id = $cart->item_id;
-			$cart->delete();
-			$item = (new Item)->find($item_id);
-			$item->increment('stocks', 1);
-			return true;
-		}
-		return false;
-	}
+	/*public function soft_delete_db(Request $request, $cart_id) {
+		DB::transaction(function () use ($cart_id, $request) {
+			$cart = Cart::find($cart_id);
+			if ($cart->user_id == Auth::id()) {
+				$item_id = $cart->item_id;
+				$stock_return = $cart->quantity;
+				$cart->delete();
+				$item = (new Item)->find($item_id);
+				$item->increment('stocks', $stock_return);
+			}
+		});
+		return redirect(route('cart.index'));
+	}*/
 	public function subtotal() {
 		$result = $this->item->price * $this->quantity;
 		return $result;
