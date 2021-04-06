@@ -21,7 +21,15 @@ Route::get('/items/{id}', 'ItemController@detail')->name('detail');
 // User ログイン後
 Route::group(['middleware' => 'auth:user'], function() {
 Route::get('user/home', 'HomeController@index')->name('home');
+Route::get('carts/shipping/index', 'ShippingController@index')->name('shipping.index');
+Route::post('carts/shipping/save', 'ShippingController@shippingSave')->name('shipping.save');
+Route::get('carts/shipping/create', 'ShippingController@showCreateForm')->name('create.form');
+Route::post('carts/shipping/create', 'ShippingController@create')->name('shipping.create');
+Route::get('carts/shipping/edit/{id}', 'ShippingController@showEditForm')->name('edit.form');
+Route::post('carts/shipping/edit/{id}', 'ShippingController@edit')->name('shipping.edit');
+Route::post('carts/shipping/delete/{id}', 'ShippingController@destroy')->name('shipping.delete');
 Route::resource('carts', 'CartController');
+
 });
 // Admin 認証不要
 Route::group(['prefix' => 'admin'], function() {

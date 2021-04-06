@@ -6,7 +6,7 @@
 @if (0 < $carts->count())
 	</div>
 	<table class="table table-striped table-hover table-centered">
-	<h1>カート内容</h1>
+	<h3>カート内容</h3>
 	<tr style="background-color:#e3f0fb">
 	<th>商品名</th>
 	<th>購入数</th>
@@ -28,6 +28,7 @@
 </tr>
 @endforeach
 </table>
+<h4><a href="{{ route('shipping.index') }}">お届け先選択へ</a></h4>
 <h4 class="text-center">合計金額：{{ $subtotals }}円</h4>
 @else
 <div style="padding:100px">
@@ -35,6 +36,6 @@
 </div>
 @endif
 <br>
-<h2><a href="{{ route('user.index') }}">商品一覧へ戻る</a></h2>
+<h4><a href="{{ route('user.index') }}">商品一覧へ戻る</a></h4>
 </body>
 @endsection
