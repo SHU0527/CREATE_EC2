@@ -20,13 +20,13 @@
 <tr>
 <td>
 {{--@if ($address->id == $address_id)--}}
-<input type="radio">
+<input type="radio"　name="shipping">
 {{--@endif--}}
 </td>
 <td align="center">
 <form method="post" action="{{ route('shipping.save') }}">
 {{ csrf_field() }}
-{{--<input type="hidden" name="address_id" value="{{ $address->id }}">--}}
+<input type="hidden" name="shipping_id" value="{{ $shipping->id }}">
 <button type="submit">選択</button>
 </td>
 <td>{{ $shipping->shipping_name }}</td>
@@ -42,6 +42,24 @@
 </td>
 @endforeach
 </table>
+@endif
+@if (isset($shipping_target))
+    @if (0 < $shipping_target->count())
+    <table border="1">
+    <tr style="background-color:yellow">    
+    <th>名前</th>
+    <th>郵便番号</th>
+    <th>住所</th>
+    <th>電話番号</th>
+    </tr>
+    <tr>
+    <td>{{ $shipping_target->shipping_name }}</td>
+    <td>{{ $shipping_target->post_number }}</td>
+    <td>{{ $shipping_target->prefectures . $shipping_target->address1 . $shipping_target->address2 }}</td>
+    <td>{{ $shipping_target->phone_number }}</td>
+    @else
+    お届け先住所は現在設定されていません
+    @endif
 @endif
 <h4><a href="{{ route('create.form') }}">お届け先登録画面へ</a></h4>
 @if (session('flash_message'))

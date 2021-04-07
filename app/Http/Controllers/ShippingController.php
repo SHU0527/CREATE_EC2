@@ -56,7 +56,9 @@ class ShippingController extends Controller
 		return redirect(route('shipping.index'))->with('flash_message', 'お届け先住所の削除が完了しました');;
 	}
 
-	public function shippingSave() {
-		dd(1);
+	public function shippingSave(Request $request) {
+		$shipping_id = $request->shipping_id;
+		$shipping_target = ShippingInformation::find($shipping_id);
+		return view('shipping.saved', compact('shipping_target'));
 	}
 }
