@@ -27,7 +27,7 @@ Route::get('carts/shipping/create', 'ShippingController@showCreateForm')->name('
 Route::post('carts/shipping/create', 'ShippingController@create')->name('shipping.create');
 Route::get('carts/shipping/edit/{id}', 'ShippingController@showEditForm')->name('edit.form');
 Route::post('carts/shipping/edit/{id}', 'ShippingController@edit')->name('shipping.edit');
-Route::post('carts/shipping/delete/{id}', 'ShippingController@destroy')->name('shipping.delete');
+Route::post('carts/shipping/delete', 'ShippingController@destroy')->name('shipping.delete');
 Route::resource('carts', 'CartController');
 
 });
