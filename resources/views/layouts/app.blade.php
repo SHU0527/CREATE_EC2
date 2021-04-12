@@ -33,8 +33,8 @@
 
 					<!-- Branding Image -->
  @if (Auth::guard('user')->user() && strpos($now_route, 'admin') === false)
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}</a>
+        {{--<a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.name', 'Laravel') }}</a>--}}
     @elseif (Auth::guard('admin')->user() && strpos($now_route, 'admin') !== false)
         <a class="navbar-brand" href="{{ route('admin.home') }}">
             {{ config('app.name', 'Laravel') }}</a>

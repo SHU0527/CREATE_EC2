@@ -7,7 +7,7 @@ use Illuminate\Support\facades\Auth;
 use App\Cart;
 use DB;
 use App\Item;
-use App\Http\Requests\;
+use App\Http\Requests;
 
 
 class CartController extends Controller

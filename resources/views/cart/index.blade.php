@@ -28,13 +28,13 @@
 </tr>
 @endforeach
 </table>
-<h4><a href="{{ route('shipping.index') }}">お届け先選択へ</a></h4>
 <h4 class="text-center">合計金額：{{ $subtotals }}円</h4>
 @else
 <div style="padding:100px">
 <h1 style="color:lightgray;text-align:center;">カートが空です</h1>
 </div>
 @endif
+<h4><a href="{{ route('shipping.index') }}">お届け先選択へ</a></h4>
 <br>
 <h4><a href="{{ route('user.index') }}">商品一覧へ戻る</a></h4>
 </body>

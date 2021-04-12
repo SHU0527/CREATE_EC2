@@ -2,6 +2,15 @@
 @section('content')
 <div class="container">
 <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <body>
 <h3>お届け先住所編集画面</h3>
 <form method="post" action="{{ route('shipping.edit', ['id' => $edit_shipping_info->id]) }}">
