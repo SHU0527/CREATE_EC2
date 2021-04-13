@@ -20,7 +20,7 @@ class ShippingController extends Controller
 	}
 
 	public function showCreateForm() {
-    	return view('shipping.create');
+		return view('shipping.create');
 	}
 
     public function create(CreateShippingRequest $request) {

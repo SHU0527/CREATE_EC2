@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EditShippingRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class EditShippingRequest extends FormRequest
 			'post_number' => 'required|numeric|digits:7',
 			'prefectures' => 'required|string|max:10',
 			'address1' => 'required|string|max:50',
-            'address2' => 'required|string|max:50',
+            'address2' => ['required', 'string', 'max:50', Rule::unique('shipping_informations', 'address2')->where('post_number', $this->input('post_number'))->where('prefectures', $this->input('prefectures'))->where('address1', $this->input('address1'))->whereNull('deleted_at')],
             'phone_number' => 'required|numeric|digits_between:8,11',
         ];
     }
@@ -52,6 +53,7 @@ class EditShippingRequest extends FormRequest
             'address2.required' => '番地以降の住所は入力必須です',
             'address2.string' => '番地以降の住所は文字列で入力してください',
             'address2.max:50' => '番地以降の住所は50文字以下で入力してください',
+            'address2.unique' => 'この住所は既に登録されている為、編集不可です',
             'phone_number.required' => '電話番号は入力必須です',
             'phone_number.digits_between:8,11' => '電話番号は8桁から11桁の間で入力してください',
             'phone_number.numeric' => '電話番号は数値で入力してください',
