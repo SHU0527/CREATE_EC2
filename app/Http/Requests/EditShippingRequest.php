@@ -29,7 +29,7 @@ class EditShippingRequest extends FormRequest
 			'post_number' => 'required|numeric|digits:7',
 			'prefectures' => 'required|string|max:10',
 			'address1' => 'required|string|max:50',
-            'address2' => ['required', 'string', 'max:50', Rule::unique('shipping_informations', 'address2')->where('post_number', $this->input('post_number'))->where('prefectures', $this->input('prefectures'))->where('address1', $this->input('address1'))->whereNull('deleted_at')],
+            'address2' => ['required', 'string', 'max:50', Rule::unique('shipping_informations', 'address2')->where('post_number', $this->input('post_number'))->where('prefectures', $this->input('prefectures'))->where('address1', $this->input('address1'))->ignore($this->id)->whereNull('deleted_at')],
             'phone_number' => 'required|numeric|digits_between:8,11',
         ];
     }
@@ -59,4 +59,5 @@ class EditShippingRequest extends FormRequest
             'phone_number.numeric' => '電話番号は数値で入力してください',
         ];
     }
+
 }

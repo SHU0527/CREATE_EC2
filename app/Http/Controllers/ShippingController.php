@@ -11,9 +11,8 @@ use App\Http\Requests\CreateShippingRequest;
 use App\Http\Requests\EditShippingRequest;
 
 
-class ShippingController extends Controller
-{
-    public function index() {
+class ShippingController extends Controller {
+	public function index() {
 		$shippings = ShippingInformation::where('user_id', Auth::id())->get();
 		$shipping_id = Auth::user()->shipping_id;
 		return view('shipping.index', compact('shippings', 'shipping_id'));
@@ -23,7 +22,7 @@ class ShippingController extends Controller
 		return view('shipping.create');
 	}
 
-    public function create(CreateShippingRequest $request) {
+	public function create(CreateShippingRequest $request) {
 		$shipping_information = new ShippingInformation;
 		$shipping_information->user_id = Auth::id();
 		$shipping_information->shipping_name = $request->shipping_name;
