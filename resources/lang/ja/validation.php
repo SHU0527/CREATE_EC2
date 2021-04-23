@@ -161,6 +161,9 @@ return [
     'address1' => '市区町村',
     'address2' => '番地以降の住所',
     'phone_number' => '電話番号',
+    'new_password' => '新しいパスワード',
+    'current_password' => '現在のパスワード',
+    'email' => 'メールアドレス',
     ],
 
 ];

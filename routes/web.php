@@ -29,6 +29,9 @@ Route::get('carts/shipping/edit/{id}', 'ShippingController@showEditForm')->name(
 Route::post('carts/shipping/edit/{id}', 'ShippingController@edit')->name('shipping.edit');
 Route::post('carts/shipping/delete', 'ShippingController@destroy')->name('shipping.delete');
 Route::resource('carts', 'CartController');
+Route::get('user/profile/', 'EditProfileController@index')->name('profile.index');
+Route::post('user/profile', 'EditProfileController@store')->name('profile.edit');
+
 
 });
 // Admin 認証不要
