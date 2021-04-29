@@ -13,6 +13,10 @@ class AddUserIdToShippingInformationsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('shipping_informations')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::table('shipping_informations', function (Blueprint $table) {
             $table->integer('user_id');
         });

@@ -31,7 +31,7 @@ Route::post('carts/shipping/delete', 'ShippingController@destroy')->name('shippi
 Route::resource('carts', 'CartController');
 Route::get('user/profile/', 'EditProfileController@index')->name('profile.index');
 Route::post('user/profile', 'EditProfileController@store')->name('profile.edit');
-
+Route::get('/user/userEmailUpdate/', 'EditProfileController@userEmailUpdate');
 
 });
 // Admin 認証不要

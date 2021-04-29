@@ -13,6 +13,10 @@ class ShippingInformation extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('shipping_informations')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('shipping_informations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('shipping_name');
