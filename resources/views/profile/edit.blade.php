@@ -16,7 +16,7 @@
 <p>新しいパスワード<input type="password" name="new_password"></p>
 <p>新しいパスワード（確認用)<input type="password" name="new_password_confirmation"></p>
 <p>現在のパスワード<input type="password" name="current_password"></p>
-<p><input type="submit" value="送信"></p>
+<p><input type="submit" value="アカウント情報を変更する"></p>
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 </form>
 @if (session('flash_message'))

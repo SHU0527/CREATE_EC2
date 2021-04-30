@@ -26,7 +26,7 @@ class EditProfileController extends Controller {
 		$edit_user_info = User::find($request->user_id);
 		$check_email = User::where('email', $request->email)->first();
 		$new_email = $request->input('email');
-		if ($new_email != Auth::user()->email) {
+		if ($new_email != Auth::user()->email && !is_null($new_email)) {
 			$token = hash_hmac(
 				'sha256',
 				str_random(40).$new_email,
@@ -43,13 +43,21 @@ class EditProfileController extends Controller {
 					$message->from('hello@app.com', 'Your Application');
 					$message->to($change_email->new_email)->subject('Your Reminder!');
 				});
-			$edit_user_info->name = $request->user_name;
-			$edit_user_info->password = bcrypt($request->get('new_password'));
+			if (!is_null($request->user_name)) {
+				$edit_user_info->name = $request->user_name;
+			}
+			if (!is_null($request->get('new_password'))) {
+				$edit_user_info->password = bcrypt($request->get('new_password'));
+			}
 			$edit_user_info->save();
 			return redirect()->back()->with('flash_message', '送信したメールアドレスのURLをクリックしてアカウント情報を変更してください');
 		} else {
-			$edit_user_info->name = $request->user_name;
-			$edit_user_info->password = bcrypt($request->get('new_password'));
+			if (!is_null($request->user_name)) {
+				$edit_user_info->name = $request->user_name;
+			}
+			if (!is_null($request->get('new_password'))) {
+				$edit_user_info->password = bcrypt($request->get('new_password'));
+			}
 			$edit_user_info->save();
 			return redirect()->back()->with('flash_message', 'アカウント情報を変更しました');
 		}

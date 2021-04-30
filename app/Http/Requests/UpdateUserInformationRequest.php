@@ -24,17 +24,16 @@ class UpdateUserInformationRequest extends FormRequest {
      */
 	public function rules() {
 		return [
-			'user_name' => 'required|string|max:20',
+			'user_name' => 'sometimes|nullable|string|max:20',
 			'current_password' => [
-				'required',
 				function ($attribute, $value, $fail) {
 					if(!(\Hash::check($value, \Auth::user()->password))) {
 						return $fail('現在のパスワードを正しく入力してください');
 					}
 				},
 			],
-			'email' => 'required|string|email|max:255|unique:users,email,'.Auth::user()->email.',email',
-			'new_password' => 'required|string|min:6|confirmed|different:current_password',
+			'email' => 'sometimes|nullable|string|email|max:255|unique:users,email,'.Auth::user()->email.',email',
+			'new_password' => 'sometimes|nullable|string|min:6|confirmed|different:current_password',
 		];
 	}
 

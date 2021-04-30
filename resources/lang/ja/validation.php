@@ -164,6 +164,7 @@ return [
     'new_password' => '新しいパスワード',
     'current_password' => '現在のパスワード',
     'email' => 'メールアドレス',
+    'user_name' => 'ユーザー名',
     ],
 
 ];
