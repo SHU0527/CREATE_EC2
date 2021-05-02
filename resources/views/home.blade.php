@@ -27,9 +27,10 @@ if (strpos($now_route, 'admin') === false) {
                         </div>
 					@endif
 					@if (!empty(Auth::guard('user')->user()) && strpos($now_route, 'admin') === false)
-						<a href="{{ route('user.index') }}">購入商品情報ページへ</a>
+						<a href="{{ route('user.index') }}">購入商品情報ページへ</a><br>
+                        <a href="{{ route('scraping') }}">Amazonカメラランキング情報をスクレイピングで取得</a>
 					@endif
-                    You are logged in!
+                    <br>You are logged in!
 				</div>
         </div>
     </div>

@@ -32,6 +32,8 @@ Route::resource('carts', 'CartController');
 Route::get('user/profile/', 'EditProfileController@index')->name('profile.index');
 Route::post('user/profile', 'EditProfileController@store')->name('profile.edit');
 Route::get('/user/userEmailUpdate/', 'EditProfileController@userEmailUpdate');
+Route::get('/scraping','ScrapingController@index')->name('scraping');
+
 
 });
 // Admin 認証不要

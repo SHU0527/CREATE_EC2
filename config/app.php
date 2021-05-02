@@ -166,6 +166,7 @@ return [
 		Illuminate\View\ViewServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
 		App\Providers\TwitterServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,6 +233,7 @@ return [
 		'Form' => Collective\Html\FormFacade::class,
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Twitter' => App\Facades\Twitter::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class,
     ],
 
 ];
