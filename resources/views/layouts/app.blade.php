@@ -77,6 +77,7 @@
 								</a>
 					<ul class="dropdown-menu">
 						<li>
+                        <a href="{{ route('admin.members') }}">会員一覧</a><br>
 						<a href="{{ route('admin.logout') }}"
 						onclick="event.preventDefault();
 						 document.getElementById('logout-form').submit();">

@@ -28,8 +28,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function sendPasswordResetNotification($token)
-{
-    $this->notify(new PasswordResetNotification($token));
-}
+    public function sendPasswordResetNotification($token) {
+        $this->notify(new PasswordResetNotification($token));
+    }
+
+    public function shippingInformation() {
+        return $this->hasMany('App\ShippingInformation', 'user_id');
+    }
 }
