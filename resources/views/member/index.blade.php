@@ -6,7 +6,7 @@
 <th>会員者名</th>
 </tr>
 @foreach ($members as $member)
-@if(!empty($member->user->name)) 
+@if(!empty($member->user->name))
 <tr>
 <td><a href="{{ route('members.detail', ['id' => $member->user_id]) }}">{{ $member->user->name }}</a></td>
 </tr>

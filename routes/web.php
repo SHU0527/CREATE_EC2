@@ -47,7 +47,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 	Route::get('home', 'HomeController@index')->name('admin.home');
 	Route::resource('items', 'Admin\ItemController', ['except' => 'destroy']);
 	Route::get('home/members', 'RegisterMembersController@index')->name('admin.members');
-	Route::get('home/members/{id}', 'RegisterMembersController@detail')->name('members.detail');
+	Route::get('home/members/{id}', 'RegisterMembersController@detail')->name('admin.detail');
 
 });
 
