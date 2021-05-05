@@ -8,7 +8,7 @@
 @foreach ($members as $member)
 @if(!empty($member->user->name))
 <tr>
-<td><a href="{{ route('members.detail', ['id' => $member->user_id]) }}">{{ $member->user->name }}</a></td>
+<td><a href="{{ route('admin.detail', ['id' => $member->user_id]) }}">{{ $member->user->name }}</a></td>
 </tr>
 @endif
 @endforeach

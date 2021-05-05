@@ -58,9 +58,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
 								</button>
-                                @if (Route::has('password.request'))
+                                {{--@if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">パスワードを忘れましたか？</a>
-                                @endif
+                                @endifz--}}
                             </div>
                         </div>
                     </form>

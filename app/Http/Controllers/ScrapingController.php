@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 //use Weidner\Goutte\GoutteFacade;
 //use Goutte;
 use Weidner\Goutte\GoutteFacade as GoutteFacade;
+use Goutte\Client;
+
 
 
 class ScrapingController extends Controller {
@@ -38,5 +40,15 @@ class ScrapingController extends Controller {
             'favorite_count' => $favorite_count,
             'ans_before' => $ans_before,
         ];
+    }
+
+    public function getLoginInformation() {
+        $client = new Client();
+        $login_page = $client->request('GET', 'https://procir-study.site/maegawa207/laravel5.5/public/login');
+        $login_form = $login_page->filter('.form-horizontal')->form();
+        $login_form['email'] = 'XXXXXX';
+        $login_form['password'] = 'XXXXXX';
+        $submit_result = $client->submit($login_form);
+        sleep(1);
     }
 }

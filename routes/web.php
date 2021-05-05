@@ -15,6 +15,7 @@ Auth::routes();
 Route::get('/', function () {
 	 return redirect('home');
 });
+Route::get('/scraping/form','ScrapingController@getLoginInformation')->name('login.scraping');
 
 Route::get('/items', 'ItemController@index')->name('user.index');
 Route::get('/items/{id}', 'ItemController@detail')->name('detail');
@@ -33,6 +34,8 @@ Route::get('user/profile/', 'EditProfileController@index')->name('profile.index'
 Route::post('user/profile', 'EditProfileController@store')->name('profile.edit');
 Route::get('/user/userEmailUpdate/', 'EditProfileController@userEmailUpdate');
 Route::get('/scraping','ScrapingController@index')->name('scraping');
+//Route::get('/scraping/form','ScrapingController@getLoginInformation')->name('login.scraping');
+
 
 
 });

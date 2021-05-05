@@ -50,6 +50,8 @@
 						@if (is_null(Auth::guard('user')->user()) && strpos($now_route, 'admin') === false)
 							<li><a href="{{ route('login') }}">Login</a></li>
 							<li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login.scraping') }}">ログイン情報をスクレイピングする</a></li>
+
 						@elseif (is_null(Auth::guard('admin')->user()) && strpos($now_route, 'admin') !== false)
 							<li><a href="{{ route('admin.login') }}">Login</a></li>
 						@endif
@@ -59,7 +61,6 @@
                                     {{ Auth::guard('user')->user()->name }} <span class="caret"></span>
                                 </a>
                                 <a href="{{ route('profile.index') }}">ユーザーアカウント編集</a>
-
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
