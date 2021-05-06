@@ -18,6 +18,9 @@ class RegisterMembersController extends Controller {
 	public function detail($id) {
 		$members_detail = ShippingInformation::where('user_id', $id)->get();
 		$user_info = User::find($id);
+		if (!isset($user_info)) {
+			return redirect()->back()->with('flash_message', '不正なアクセスです');
+		}
 		return view('member.detail', compact('members_detail', 'user_info'));
 	}
 }
