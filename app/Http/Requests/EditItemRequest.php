@@ -3,12 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Request;
 use App\Item;
 use Illuminate\Validation\Rule;
 
 
-class ItemRequest extends FormRequest
+class EditItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +25,11 @@ class ItemRequest extends FormRequest
      * @return array
      */
     public function rules()
-	{
-		$item = Item::find($this->id);
+    {
+        $item = Item::find($this->id);
         return [
-            'name' => ['required', 'string', 'max:100', Rule::unique('items', 'name')->ignore($this->id)->whereNull('deleted_at')],
+			'name' => ['required', 'string', 'max:100', Rule::unique('items', 'name')->ignore($this->id)->whereNull('deleted_at')],
 			'description' => 'required|string|max:1000',
-			'price' => 'required|numeric|min:1|max:999999999',
 			'stocks' => 'required|numeric|min:0|max:99999',
             'image_name' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
 		];
@@ -46,10 +44,6 @@ class ItemRequest extends FormRequest
 			'description.required' => '商品説明は入力必須です',
 			'description.string' => '商品説明は文字で入力してください',
 			'description.max:1000' => '商品説明は1000文字まで入力してください',
-			'price.required' => '値段は入力必須です',
-			'price.numeric' => '値段は数値で入力してください',
-            'price.min:1' => '値段は1円から入力してください',
-			'price.max:999999999' => '値段は999999999円以下で入力してください',
 			'stocks.required' => '在庫数は入力必須です',
 			'stocks.numeric' => '在庫数は数値で入力してください',
             'stocks.min:0' => '在庫数は0個から入力してください',

@@ -165,6 +165,8 @@ return [
     'current_password' => '現在のパスワード',
     'email' => 'メールアドレス',
     'user_name' => 'ユーザー名',
+    'stocks' => '在庫数',
+    'price' => '値段',
     ],
 
 ];

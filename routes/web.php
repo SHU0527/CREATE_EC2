@@ -48,10 +48,14 @@ Route::group(['prefix' => 'admin'], function() {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 	Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
 	Route::get('home', 'HomeController@index')->name('admin.home');
-	Route::resource('items', 'Admin\ItemController', ['except' => 'destroy']);
+	//Route::resource('items', 'Admin\ItemController', ['except' => 'destroy']);
 	Route::get('home/members', 'RegisterMembersController@index')->name('admin.members');
 	Route::get('home/members/{id}', 'RegisterMembersController@detail')->name('admin.detail');
 
+});
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function() {
+	Route::resource('items', 'Admin\ItemController', ['except' => 'destroy']);
 });
 
 ?>

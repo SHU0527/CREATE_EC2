@@ -14,7 +14,7 @@
     <!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	@if (strpos($now_route, 'admin') !== false)
-		<style>body{background-color: tomato;}</style>
+		<style>body{background-color: #CC99FF;}</style>
 	@endif
 </head>
 <body>
@@ -79,6 +79,7 @@
 					<ul class="dropdown-menu">
 						<li>
                         <a href="{{ route('admin.members') }}">会員一覧</a><br>
+                        <a href="{{ route('admin.items.index') }}">登録商品一覧</a><br>
 						<a href="{{ route('admin.logout') }}"
 						onclick="event.preventDefault();
 						 document.getElementById('logout-form').submit();">
