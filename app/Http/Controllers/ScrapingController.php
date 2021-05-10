@@ -43,6 +43,15 @@ class ScrapingController extends Controller {
         $login_form['email'] = 'XXXXXX';
         $login_form['password'] = 'XXXXXX';
         $submit_result = $client->submit($login_form);
+        $user_name = '';
+        $items_link = '';
+        $submit_result->filter('.dropdown-toggle')->each(function ($node) use (&$user_name) {
+            $user_name = $node->text();
+        });
+        $submit_result->filter('.panel-body')->each(function ($node) use (&$items_link) {
+            $items_link = $node->filter('a')->attr('href');
+        });
         sleep(1);
+        return view('scraping.get_login', compact('items_link', 'user_name'));
     }
 }
