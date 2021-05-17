@@ -90,7 +90,8 @@ class ShippingController extends Controller {
 
 	public function shippingSave(Request $request) {
 		$shipping_id = $request->shipping_id;
+		dd($shipping_id);
 		$shipping_target = ShippingInformation::find($shipping_id);
-		return view('shipping.saved', compact('shipping_target'));
+		return view('cart.index', compact('shipping_target'));
 	}
 }

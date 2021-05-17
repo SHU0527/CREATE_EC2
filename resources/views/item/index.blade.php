@@ -7,6 +7,11 @@
 <body>
 @extends('layouts.app')
 @section('content')
+@if (session('flash_message'))
+    <div class="flash_message bg-success text-center py-3 my-0">
+    {{ session('flash_message') }}
+    </div>
+@endif
 <h1>商品一覧</h1>
 @if (Auth::check())
 	<a href="{{ route('carts.index') }}">カートの中身を確認する</a>

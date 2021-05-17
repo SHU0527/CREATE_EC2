@@ -34,6 +34,8 @@ Route::get('user/profile/', 'EditProfileController@index')->name('profile.index'
 Route::post('user/profile', 'EditProfileController@store')->name('profile.edit');
 Route::get('/user/userEmailUpdate/', 'EditProfileController@userEmailUpdate');
 Route::get('/scraping','ScrapingController@index')->name('scraping');
+Route::post('/charge','ChargeController@index')->name('charge.index');
+Route::post('/charge/confirm','ChargeController@confirm')->name('charge.confirm');
 //Route::get('/scraping/form','ScrapingController@getLoginInformation')->name('login.scraping');
 
 

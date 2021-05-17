@@ -18,13 +18,9 @@
     </tr>
     @foreach ($shippings as $shipping)
         <tr>
-        <td>
-        @if ($shipping->id == $shipping_id)
-            <input type="radio">
-        @endif
-        </td>
+        <td><input type="radio" name="select_address"></td>
         <td align="center">
-        <form method="post" action="{{ route('shipping.save') }}">
+        <form method="post" action="{{ route('charge.index') }}">
         {{ csrf_field() }}
         <input type="hidden" name="shipping_id" value="{{ $shipping->id }}">
         <button type="submit">選択</button>
