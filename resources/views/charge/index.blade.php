@@ -58,6 +58,16 @@ data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
 data-locale="auto"
 data-currency="JPY">
 </script>
+<input type="hidden" name="amount" value="{{ $subtotals }}">
+<input type="hidden" name="shipping_name" value="{{ $shipping_target->shipping_name }}">
+<input type="hidden" name="post_number" value="{{ $shipping_target->post_number }}">
+<input type="hidden" name="prefectures" value="{{ $shipping_target->prefectures }}">
+<input type="hidden" name="address1" value="{{ $shipping_target->address1 }}">
+<input type="hidden" name="address2" value="{{ $shipping_target->address2 }}">
+@foreach ($carts as $cart)
+<input type="hidden" name="item_id[]" value="{{ $cart->item->id }}">
+<input type="hidden" name="quantity[]" value="{{ $cart->quantity }}">
+@endforeach
 </form>
 </div>
 @endsection

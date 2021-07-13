@@ -41,7 +41,7 @@ class CartController extends Controller
     public function store(Request $request)
 	{
 		$item_id = $request->input('item_id');
-		$this->cart->add_db($item_id, 1);
+		$this->cart->add_db($item_id);
 		return redirect('carts');
         
 	}

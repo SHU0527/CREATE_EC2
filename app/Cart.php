@@ -29,7 +29,7 @@ class Cart extends Model
 		if ($qty <= 0) {
 			return false;
 		}
-		$cart = $this->firstOrCreate(['user_id' => Auth::id(), 'item_id' => $item_id], ['quantity' => 1]);
+		$cart = $this->firstOrCreate(['user_id' => Auth::id(), 'item_id' => $item_id], ['quantity' => 0]);
 		$cart->increment('quantity', 1);
 		$item->decrement('stocks', 1);
 		return true;
