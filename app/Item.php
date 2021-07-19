@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Item extends Model {
 	protected $fillable = ['name', 'description', 'price', 'stocks'];
