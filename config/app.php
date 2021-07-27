@@ -167,6 +167,7 @@ return [
 		Laravel\Socialite\SocialiteServiceProvider::class,
 		App\Providers\TwitterServiceProvider::class,
         Weidner\Goutte\GoutteServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
 
         /*
          * Package Service Providers...

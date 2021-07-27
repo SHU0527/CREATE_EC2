@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
-use App\Repositories\ItemEroquentRepository;
+//use App\Repositories\ItemEroquentRepository;
+use App\Repositories\ItemDataAccessRepositoryInterface AS ItemDataAccess;
+
 
 class ItemController extends Controller
 {
-	protected $item_repository;
+	protected $item;
 
-	public function __construct(ItemEroquentRepository $item_repository) {
-		$this->item_repository = $item_repository;
+	public function __construct(ItemDataAccess $item_data_access) {
+		$this->item = $item_data_access;
 	}
 	public function index() {
-		
-		$items = $this->item_repository->getItems();
+		$items = $this->item->getAll();
 		return view('item.index', compact('items'));
-		
 	}
 	public function detail($id) {
-		$detail = $this->item_repository->getDetails($id);
+		$detail = $this->item->getDetail($id);
 		return view('item.detail', compact('detail'));
 	}
 }
